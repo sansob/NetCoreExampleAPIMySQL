@@ -15,7 +15,7 @@ namespace TaskProjectApi.Repository
 
         public IEnumerable<TodoItem> GetAll()
         {
-            return _todoContext.TodoItems.ToList();
+            return _todoContext.TodoItems.OrderByDescending(c => c.Id).ToList();
         }
 
         public TodoItem Get(long id)

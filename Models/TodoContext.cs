@@ -10,8 +10,5 @@ namespace TaskProjectApi.Models
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
-
     }
-    
-    
 }

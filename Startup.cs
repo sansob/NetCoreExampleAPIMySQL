@@ -30,12 +30,20 @@ namespace TaskProjectApi
                 app.UseHsts();
 
             app.UseHttpsRedirection();
+            app.UseCors("Cors");
             app.UseMvc();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ITodoRepository<TodoItem>, TodoRepository>();
+            services.AddCors(options => options.AddPolicy("Cors",
+                builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                }));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // other service configurations go here
             services.AddDbContextPool<TodoContext>( // replace "YourDbContext" with the class name of your DbContext
